@@ -32,15 +32,23 @@ export const generateQuizQuestions = async (): Promise<QuizQuestion[]> => {
     console.log("Generating quiz questions...");
     console.log("API Key configured:", !!apiKey);
     
+    // 生成随机种子和主题
+    const randomSeed = Math.random().toString(36).substr(2, 9);
+    const topics = ["animals", "food", "colors", "numbers", "family", "school", "nature", "sports", "daily life", "weather"];
+    const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+    const randomCount = 8 + Math.floor(Math.random() * 4); // 8-11 questions
+    
+    console.log(`Generating ${randomCount} questions about ${randomTopic}...`);
+    
     const requestBody: ChatRequest = {
-      model: "glm-4-flash", // 尝试使用不同的模型
+      model: "glm-4", // 使用基础模型可能会有更多变化
       messages: [
         {
           role: "user",
-          content: "Generate 10 elementary school level English vocabulary quiz questions. The target audience is Chinese elementary students. Each question presents an English word, and the user must choose the correct Chinese meaning. Include an example sentence using the word. Return the result as a JSON array with the following structure for each question: {\"word\": string, \"pronunciation\": string (optional), \"options\": string[], \"correctAnswerIndex\": number, \"exampleSentence\": string}"
+          content: `Generate ${randomCount} elementary school level English vocabulary quiz questions about ${randomTopic}. The target audience is Chinese elementary students. Each question presents an English word, and the user must choose the correct Chinese meaning. Include an example sentence using the word. Make sure the questions are diverse and not repetitive. Return the result as a JSON array with the following structure for each question: {\"word\": string, \"pronunciation\": string (optional), \"options\": string[], \"correctAnswerIndex\": number, \"exampleSentence\": string}\n\nRandom seed: ${randomSeed}`
         }
       ],
-      temperature: 0.7
+      temperature: 0.9 // 提高温度值增加随机性
     };
     console.log("Request body:", JSON.stringify(requestBody, null, 2));
 
