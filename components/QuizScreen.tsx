@@ -35,15 +35,51 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ questions, onFinish }) =
   };
 
   const speakWord = () => {
-    const utterance = new SpeechSynthesisUtterance(currentQuestion.word);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    try {
+      if (!window.speechSynthesis) {
+        console.warn('Speech synthesis not supported in this browser');
+        return;
+      }
+      
+      if (!currentQuestion || !currentQuestion.word) {
+        console.warn('No word to speak');
+        return;
+      }
+      
+      const utterance = new SpeechSynthesisUtterance(currentQuestion.word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // 稍微减慢语速，更清晰
+      
+      // 先取消之前的语音，再开始新的
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    } catch (error) {
+      console.error('Error speaking word:', error);
+    }
   };
 
   const speakSentence = () => {
-    const utterance = new SpeechSynthesisUtterance(currentQuestion.exampleSentence);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    try {
+      if (!window.speechSynthesis) {
+        console.warn('Speech synthesis not supported in this browser');
+        return;
+      }
+      
+      if (!currentQuestion || !currentQuestion.exampleSentence) {
+        console.warn('No sentence to speak');
+        return;
+      }
+      
+      const utterance = new SpeechSynthesisUtterance(currentQuestion.exampleSentence);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8; // 句子朗读稍微慢一点
+      
+      // 先取消之前的语音，再开始新的
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    } catch (error) {
+      console.error('Error speaking sentence:', error);
+    }
   };
 
   return (
