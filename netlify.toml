@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# 环境变量需要在 Netlify 控制台中设置
+# VITE_ZHIPUAI_API_KEY = "your-api-key-here"
