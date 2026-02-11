@@ -45,7 +45,7 @@ export const generateQuizQuestions = async (): Promise<QuizQuestion[]> => {
       messages: [
         {
           role: "user",
-          content: `Generate ${randomCount} middle school level English vocabulary quiz questions about ${randomTopic}. The target audience is Chinese middle school students. Each question presents an English word, and the user must choose the correct Chinese meaning. Include an example sentence using the word. Make sure the questions are diverse and not repetitive. Return the result as a JSON array with the following structure for each question: {\"word\": string, \"pronunciation\": string (optional), \"options\": string[], \"correctAnswerIndex\": number, \"exampleSentence\": string}\n\nRandom seed: ${randomSeed}`
+          content: `Generate ${randomCount} high school entrance exam (zhongkao) level English vocabulary quiz questions about ${randomTopic}. The target audience is Chinese middle school students preparing for high school entrance exams. Each question presents an English word, and the user must choose the correct Chinese meaning. Include an example sentence using the word. Make sure the questions are appropriate for zhongkao level and not too difficult. Return the result as a JSON array with the following structure for each question: {\"word\": string, \"pronunciation\": string (optional), \"options\": string[], \"correctAnswerIndex\": number, \"exampleSentence\": string}\n\nRandom seed: ${randomSeed}`
         }
       ],
       temperature: 0.9 // 提高温度值增加随机性
