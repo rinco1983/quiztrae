@@ -19,9 +19,7 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
         <h1 className="text-5xl md:text-7xl font-extrabold text-primary tracking-tight">
           Word<br/>Wizard
         </h1>
-        <div className="mt-2 text-xl text-dark/60 font-medium bg-white/50 px-4 py-1 rounded-full inline-block">
-          小学英语挑战
-        </div>
+        {/* 移除小学英语挑战字样 */}
       </div>
 
       <p className="text-lg md:text-xl text-dark/70 mb-10 max-w-md leading-relaxed">

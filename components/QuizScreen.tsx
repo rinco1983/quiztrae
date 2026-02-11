@@ -40,6 +40,12 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ questions, onFinish }) =
     window.speechSynthesis.speak(utterance);
   };
 
+  const speakSentence = () => {
+    const utterance = new SpeechSynthesisUtterance(currentQuestion.exampleSentence);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Header / Progress */}
@@ -95,8 +101,15 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ questions, onFinish }) =
             </p>
           )}
 
-          <div className="bg-indigo-50 rounded-xl p-4 text-indigo-800/70 text-lg font-medium italic">
-            "{currentQuestion.exampleSentence}"
+          <div className="bg-indigo-50 rounded-xl p-4 text-indigo-800/70 text-lg font-medium italic flex items-center justify-between">
+            <span>"{currentQuestion.exampleSentence}"</span>
+            <button 
+              onClick={speakSentence}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 hover:bg-indigo-200 transition-colors ml-4"
+              aria-label="Listen to example sentence"
+            >
+              <Volume2 size={20} />
+            </button>
           </div>
         </div>
       </div>
