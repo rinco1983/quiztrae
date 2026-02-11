@@ -45,7 +45,7 @@ export const generateQuizQuestions = async (): Promise<QuizQuestion[]> => {
       messages: [
         {
           role: "user",
-          content: `Generate ${randomCount} high school entrance exam (zhongkao) level English vocabulary quiz questions about ${randomTopic}. The target audience is Chinese middle school students preparing for high school entrance exams. Each question presents an English word, and the user must choose the correct Chinese meaning. Include an example sentence using the word. Make sure the questions are appropriate for zhongkao level and not too difficult. Return the result as a JSON array with the following structure for each question: {\"word\": string, \"pronunciation\": string (optional), \"options\": string[], \"correctAnswerIndex\": number, \"exampleSentence\": string}\n\nRandom seed: ${randomSeed}`
+          content: `请生成${randomCount}个中考（zhongkao）级别的英语词汇测试题，主题是${randomTopic}。目标受众是准备中考的中国中学生。每个问题包含一个英语单词、四个中文选项、正确答案索引和一个例句。确保词汇难度适合中考水平，不要太难。请以JSON格式返回，结构如下：[{\"word\": \"单词\", \"pronunciation\": \"发音（可选）\", \"options\": [\"选项1\", \"选项2\", \"选项3\", \"选项4\"], \"correctAnswerIndex\": 正确答案索引, \"exampleSentence\": \"例句\"}]\n\nRandom seed: ${randomSeed}`
         }
       ],
       temperature: 0.9 // 提高温度值增加随机性
