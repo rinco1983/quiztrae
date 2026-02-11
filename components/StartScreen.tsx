@@ -17,10 +17,10 @@ export const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
           <Brain size={40} />
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold text-primary tracking-tight">
-          趣味<br/>英语挑战
+          Word<br/>Wizard
         </h1>
         <div className="mt-2 text-xl text-dark/60 font-medium bg-white/50 px-4 py-1 rounded-full inline-block">
-          中学生词汇
+          小学英语挑战
         </div>
       </div>
 
